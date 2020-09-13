@@ -1,0 +1,7 @@
+# Project exclude paths
+/ldh-auth/target/
+/ldh-common/target/
+/ldh-gateway/target/
+/ldh-register/target/
+/ldh-server/ldh-server-system/target/
+/ldh-server/ldh-server-test/target/
