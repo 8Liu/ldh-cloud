@@ -1,9 +1,13 @@
 package com.liudehuang.auth.configure;
 
+import com.liudehuang.common.handler.LdhAccessDeniedHandler;
+import com.liudehuang.common.handler.LdhAuthExceptionEntryPoint;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
+import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 
 /**
  * LdhResourceServerConfigure用于处理非/oauth/开头的请求，
@@ -15,6 +19,11 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 @EnableResourceServer
 public class LdhResourceServerConfigure extends ResourceServerConfigurerAdapter {
 
+    @Autowired
+    private LdhAccessDeniedHandler accessDeniedHandler;
+    @Autowired
+    private LdhAuthExceptionEntryPoint exceptionEntryPoint;
+
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()//禁止跨域请求
@@ -22,5 +31,11 @@ public class LdhResourceServerConfigure extends ResourceServerConfigurerAdapter 
                 .and()
                 .authorizeRequests()
                 .antMatchers("/**").authenticated();
+    }
+
+    @Override
+    public void configure(ResourceServerSecurityConfigurer resources) {
+        resources.authenticationEntryPoint(exceptionEntryPoint)
+                .accessDeniedHandler(accessDeniedHandler);
     }
 }

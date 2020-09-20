@@ -1,6 +1,6 @@
 package com.liudehuang.auth.controller;
 
-import com.liudehuang.common.entity.FebsResponse;
+import com.liudehuang.common.entity.LdhResponse;
 import com.liudehuang.common.exception.LdhAuthException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.provider.token.ConsumerTokenServices;
@@ -29,10 +29,10 @@ public class SecurityController {
     }
 
     @DeleteMapping("signout")
-    public FebsResponse signout(HttpServletRequest request) throws LdhAuthException {
+    public LdhResponse signout(HttpServletRequest request) throws LdhAuthException {
         String authorization = request.getHeader("Authorization");
         String token = StringUtils.replace(authorization, "bearer ", "");
-        FebsResponse febsResponse = new FebsResponse();
+        LdhResponse febsResponse = new LdhResponse();
         if (!consumerTokenServices.revokeToken(token)) {
             throw new LdhAuthException("退出登录失败");
         }
