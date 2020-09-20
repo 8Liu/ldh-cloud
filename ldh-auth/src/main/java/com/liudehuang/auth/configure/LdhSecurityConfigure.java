@@ -1,5 +1,6 @@
 package com.liudehuang.auth.configure;
 
+import com.liudehuang.auth.filter.ValidateCodeFilter;
 import com.liudehuang.auth.service.LdhUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -11,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
  * LdhSecurityConfigure用于处理/oauth开头的请求，（对oauth相关的请求进行验证）
@@ -25,6 +27,10 @@ public class LdhSecurityConfigure extends WebSecurityConfigurerAdapter {
     private LdhUserDetailService userDetailService;
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private ValidateCodeFilter validateCodeFilter;
+
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
@@ -38,7 +44,8 @@ public class LdhSecurityConfigure extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.requestMatchers()
+        http.addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class)
+                .requestMatchers()
                 //LdhSecurityConfigure安全配置类只对/oauth/开头的请求有效。
                 .antMatchers("/oauth/**")
                 .and()

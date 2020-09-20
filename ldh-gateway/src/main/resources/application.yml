@@ -8,6 +8,8 @@ spring:
     user:
       name: liudehuang
       password: 123456
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
 eureka:
   instance:
     lease-renewal-interval-in-seconds: 20

@@ -1,7 +1,9 @@
 package com.liudehuang.auth.configure;
 
+import com.liudehuang.auth.properties.LdhAuthProperties;
 import com.liudehuang.common.handler.LdhAccessDeniedHandler;
 import com.liudehuang.common.handler.LdhAuthExceptionEntryPoint;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -23,14 +25,19 @@ public class LdhResourceServerConfigure extends ResourceServerConfigurerAdapter 
     private LdhAccessDeniedHandler accessDeniedHandler;
     @Autowired
     private LdhAuthExceptionEntryPoint exceptionEntryPoint;
+    @Autowired
+    private LdhAuthProperties properties;
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
+        String[] anonUrls = StringUtils.splitByWholeSeparatorPreserveAllTokens(properties.getAnonUrl(), ",");
         http.csrf().disable()//禁止跨域请求
                 .requestMatchers().antMatchers("/**")
                 .and()
                 .authorizeRequests()
-                .antMatchers("/**").authenticated();
+                .antMatchers(anonUrls).permitAll()
+                .antMatchers("/**").authenticated()
+                .and().httpBasic();
     }
 
     @Override
