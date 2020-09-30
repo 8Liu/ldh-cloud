@@ -14,6 +14,8 @@
         <module>ldh-auth</module>
         <module>ldh-gateway</module>
         <module>ldh-server</module>
+        <module>ldh-monitor</module>
+        <module>ldh-monitor-admin</module>
     </modules>
     <name>ldh-Cloud</name>
     <description>ldh-Cloud：Spring Cloud，Spring Security OAuth2 微服务权限管理系统</description>

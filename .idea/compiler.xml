@@ -11,6 +11,7 @@
         <module name="ldh-common" />
         <module name="ldh-register" />
         <module name="ldh-auth" />
+        <module name="ldh-monitor-admin" />
         <module name="ldh-server-system" />
         <module name="ldh-server-test" />
       </profile>
@@ -21,6 +22,8 @@
       <module name="ldh-auth" options="-parameters" />
       <module name="ldh-common" options="-parameters" />
       <module name="ldh-gateway" options="-parameters" />
+      <module name="ldh-monitor" options="-parameters" />
+      <module name="ldh-monitor-admin" options="-parameters" />
       <module name="ldh-register" options="-parameters" />
       <module name="ldh-server" options="-parameters" />
       <module name="ldh-server-system" options="-parameters" />
