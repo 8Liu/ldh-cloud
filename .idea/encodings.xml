@@ -3,11 +3,17 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ldh-auth" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ldh-auth/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ldh-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ldh-common/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ldh-gateway" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ldh-gateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ldh-register" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ldh-register/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ldh-server" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ldh-server/ldh-server-system" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ldh-server/ldh-server-system/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ldh-server/ldh-server-test" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ldh-server/ldh-server-test/src/main/java" charset="UTF-8" />
   </component>
 </project>
